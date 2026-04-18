@@ -1,7 +1,12 @@
 import { UserStatus, type PaginatedRequest, type UserFilters } from '@/types';
 import { listMockUsers, findMockUserById } from './mock-store';
 
+const SIMULATED_DELAY_MS = 500;
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function handleUsersRequest(request: Request): Promise<Response> {
+    await delay(SIMULATED_DELAY_MS);
+
     if (request.method !== 'GET') {
         return Response.json({ error: 'Method not allowed.' }, { status: 405 });
     }

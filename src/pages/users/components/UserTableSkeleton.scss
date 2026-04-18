@@ -1,0 +1,41 @@
+.user-table-skeleton {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+
+    &__header {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr) 50px;
+        padding: 20px 30px;
+        border-bottom: 1px solid rgba(33, 63, 125, 0.05);
+        background: #fbfbfb;
+    }
+
+    &__rows {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr) 50px;
+        padding: 20px 30px;
+        border-bottom: 1px solid rgba(33, 63, 125, 0.05);
+        align-items: center;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    &__cell {
+        display: flex;
+        align-items: center;
+
+        &--actions {
+            justify-content: flex-end;
+        }
+    }
+}

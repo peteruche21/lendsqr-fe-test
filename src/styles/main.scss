@@ -12,6 +12,7 @@
 @use 'components/sidebar/Sidebar';
 @use 'components/table/DataTable';
 @use 'components/top-nav/TopNav';
+@use 'components/skeleton/Skeleton';
 @use 'pages/login/LoginPage';
 @use 'pages/shared/Page';
 @use 'pages/shared/PageHeader';
@@ -19,6 +20,8 @@
 @use 'pages/users/components/UserDetailsSummary';
 @use 'pages/users/components/UserDetailsTabs';
 @use 'pages/users/components/UserDetailsGeneral';
+@use 'pages/users/components/UserTableSkeleton';
+@use 'pages/users/components/UserDetailSkeleton';
 @use 'pages/users/UsersLayout';
 @use 'pages/users/UsersPage';
 @use 'pages/users/UserDetailPage';

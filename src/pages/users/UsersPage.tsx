@@ -13,6 +13,7 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { createUserColumns } from './components/UserColumns';
 import { UserTableFilter } from './components/UserTableFilter';
+import { UserTableSkeleton } from './components/UserTableSkeleton';
 
 type UserStatCard = {
     backgroundColor: string;
@@ -160,7 +161,7 @@ export function UsersPage() {
                 </div>
 
                 <Card as="div" className="users__table-wrap">
-                    <DataTable columns={columns} data={users} />
+                    {query.isLoading ? <UserTableSkeleton /> : <DataTable columns={columns} data={users} />}
                 </Card>
 
                 <footer className="users__footer">

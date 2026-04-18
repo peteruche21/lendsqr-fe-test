@@ -9,3 +9,4 @@ export * from './pagination';
 export * from './search-input';
 export * from './sidebar';
 export * from './top-nav';
+export * from './skeleton';
