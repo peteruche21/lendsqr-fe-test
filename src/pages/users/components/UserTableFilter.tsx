@@ -1,5 +1,5 @@
 import { Calendar, ChevronDown } from 'lucide-react';
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
 import { Button, Card, Input } from '@/components';
 import { USER_ORGANIZATIONS, USER_STATUSES } from '@/constants';
 import type { UserFilterField, UserFilters, UserStatus } from '@/types';
@@ -100,12 +100,16 @@ function FilterSelect<Value extends OrganizationFilterValue | UserStatus>({
     placeholder,
     value,
 }: FilterSelectProps<Value>) {
+    const selectId = useId();
+
     return (
-        <label className="user-table-filter__field">
+        <label className="user-table-filter__field" htmlFor={selectId}>
             <span className="user-table-filter__label">{label}</span>
             <span className="user-table-filter__control">
                 <select
+                    aria-label={label}
                     className="user-table-filter__select"
+                    id={selectId}
                     value={value}
                     onChange={(event) => onChange(event.target.value as Value | '')}
                 >
@@ -129,6 +133,7 @@ type FilterDateProps = {
 };
 
 function FilterDate({ label, onChange, value }: FilterDateProps) {
+    const inputId = useId();
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const openPicker = () => {
@@ -137,13 +142,15 @@ function FilterDate({ label, onChange, value }: FilterDateProps) {
     };
 
     return (
-        <label className="user-table-filter__field">
+        <label className="user-table-filter__field" htmlFor={inputId}>
             <span className="user-table-filter__label">{label}</span>
             <span className="user-table-filter__control" role="presentation" onClick={openPicker}>
                 <input
                     ref={inputRef}
+                    aria-label={label}
                     className="user-table-filter__input-control"
                     data-empty={value === '' ? 'true' : 'false'}
+                    id={inputId}
                     placeholder="Date"
                     type="date"
                     value={value}

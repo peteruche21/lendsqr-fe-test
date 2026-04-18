@@ -26,6 +26,7 @@ export function Input({ className, error, id, label, type = 'text', ...inputProp
                 <input
                     aria-invalid={error ? 'true' : 'false'}
                     aria-describedby={error ? `${inputId}-error` : undefined}
+                    aria-label={label}
                     className="input-field__input"
                     id={inputId}
                     type={resolvedType}
