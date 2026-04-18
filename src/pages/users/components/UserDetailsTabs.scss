@@ -1,0 +1,53 @@
+.user-details-tabs {
+  width: 100%;
+  margin-top: 0; // Handled by parent gap
+
+  &__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    // Mobile horizontal scroll logic
+    @media (max-width: 992px) {
+      overflow-x: auto;
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE/Edge
+      
+      &::-webkit-scrollbar {
+        display: none; // Chrome/Safari/Opera
+      }
+    }
+  }
+
+  &__item {
+    flex-shrink: 0;
+  }
+
+  &__button {
+    border: 0;
+    background: transparent;
+    padding: 0 25px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    
+    // Inactive State: SF Compact Text 400 16px, #000000 at 80% opacity
+    color: rgba(0, 0, 0, 0.8);
+    font-family: 'SF Compact Text', system-ui, sans-serif;
+
+    &--active {
+      color: #39cdcc;
+      border-bottom-color: #39cdcc;
+      font-family: 'Work Sans', system-ui, sans-serif;
+    }
+
+    &:hover:not(&--active) {
+      opacity: 0.8;
+    }
+  }
+}

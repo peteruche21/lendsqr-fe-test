@@ -16,5 +16,8 @@
 @use 'pages/shared/Page';
 @use 'pages/shared/PageHeader';
 @use 'pages/users/components/UserColumns';
+@use 'pages/users/components/UserDetailsSummary';
+@use 'pages/users/components/UserDetailsTabs';
 @use 'pages/users/UsersLayout';
 @use 'pages/users/UsersPage';
+@use 'pages/users/UserDetailPage';
