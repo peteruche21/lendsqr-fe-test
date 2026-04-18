@@ -1,57 +1,42 @@
-import { useEffect, useMemo, useRef } from 'react'
-import { useInfiniteQuery, type InfiniteData } from '@tanstack/react-query'
+import { useMemo, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { fetchUsers } from '@/api'
-import { Badge, SearchInput } from '@/components'
+import { Badge, Pagination, SearchInput } from '@/components'
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS } from '@/constants'
-import type { PaginatedResponse, User } from '@/types'
+import type { User } from '@/types'
 import { formatUserDate } from '@/utils'
 import { Page } from '@/pages/shared'
 
 export function UsersPage() {
-  const sentinelRef = useRef<HTMLDivElement | null>(null)
-  const query = useInfiniteQuery<
-    PaginatedResponse<User>,
-    Error,
-    InfiniteData<PaginatedResponse<User>>,
-    readonly ['users', number],
-    number
-  >({
-    getNextPageParam: (lastPage) => lastPage.pagination.nextCursor ?? undefined,
-    initialPageParam: 0,
-    queryFn: ({ pageParam }) =>
+  const [currentPage, setCurrentPage] = useState(1)
+  const cursor = (currentPage - 1) * DEFAULT_USER_PAGE_SIZE
+  const query = useQuery({
+    queryFn: () =>
       fetchUsers({
-        cursor: pageParam,
+        cursor,
         limit: DEFAULT_USER_PAGE_SIZE,
       }),
-    queryKey: ['users', DEFAULT_USER_PAGE_SIZE],
+    queryKey: ['users', DEFAULT_USER_PAGE_SIZE, currentPage],
     staleTime: QUERY_STALE_TIME_MS,
   })
 
-  const users = useMemo(
-    () => query.data?.pages.flatMap((page) => page.items) ?? [],
-    [query.data],
+  const users = query.data?.items ?? []
+  const total = query.data?.pagination.total ?? 0
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(total / DEFAULT_USER_PAGE_SIZE)),
+    [total],
   )
-  const total = query.data?.pages[0]?.pagination.total ?? 0
+  const statusMessage = query.isError
+    ? 'Unable to load users.'
+    : query.isLoading
+      ? 'Loading users...'
+      : query.isFetching
+        ? 'Refreshing users...'
+        : ''
 
-  useEffect(() => {
-    const sentinel = sentinelRef.current
-
-    if (!sentinel) {
-      return
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      const [entry] = entries
-
-      if (entry?.isIntersecting && query.hasNextPage && !query.isFetchingNextPage) {
-        void query.fetchNextPage()
-      }
-    })
-
-    observer.observe(sentinel)
-
-    return () => observer.disconnect()
-  }, [query])
+  const goToPage = (page: number) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages))
+  }
 
   return (
     <Page copy="this is a users page.">
@@ -61,8 +46,11 @@ export function UsersPage() {
         </div>
 
         <header className="users__summary">
-          <span>{users.length} loaded</span>
+          <span>{users.length} shown</span>
           <span>{total} total</span>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
         </header>
 
         <div className="users__table-wrap">
@@ -85,12 +73,17 @@ export function UsersPage() {
           </table>
         </div>
 
-        <div className="users__sentinel" ref={sentinelRef}>
-          {query.isLoading && 'Loading users...'}
-          {query.isFetchingNextPage && 'Loading more users...'}
-          {!query.hasNextPage && users.length > 0 && 'All users loaded.'}
-          {query.isError && 'Unable to load users.'}
-        </div>
+        <footer className="users__footer">
+          <span className="users__status">{statusMessage}</span>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onNext={() => goToPage(currentPage + 1)}
+            onPageChange={goToPage}
+            onPrevious={() => goToPage(currentPage - 1)}
+          />
+        </footer>
       </section>
     </Page>
   )

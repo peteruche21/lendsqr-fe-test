@@ -4,4 +4,5 @@ export * from "./button";
 export * from "./card";
 export * from "./input";
 export * from "./logo";
+export * from "./pagination";
 export * from "./search-input";
