@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun --hot src/index.tsx",
-    "build": "tsc --noEmit && bun run build.ts",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
     "lint": "eslint .",
-    "start": "NODE_ENV=production bun src/index.tsx"
+    "preview": "vite preview",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@tanstack/react-form": "^1.29.0",
@@ -18,17 +19,21 @@
     "react-router-dom": "^7.14.1"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.32.3",
+    "@cloudflare/workers-types": "^4.20260418.1",
     "@eslint/js": "^9.39.4",
-    "@types/bun": "latest",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
-    "sass-embedded": "^1.99.0",
+    "sass": "^1.99.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.58.0"
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.0.8",
+    "wrangler": "^4.83.0"
   }
 }

@@ -4,7 +4,7 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "esnext",
-    "types": ["bun-types"],
+    "types": ["vite/client", "@cloudflare/workers-types"],
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -20,5 +20,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["build.ts", "src"]
+  "include": ["src", "vite.config.ts", "worker"]
 }
