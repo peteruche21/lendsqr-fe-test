@@ -59,10 +59,25 @@
   margin-top: 20px;
 }
 
+.users__footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.users__footer-text {
+  color: #545f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .users__status {
   min-height: 20px;
   color: #545f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
   font-size: 14px;
+  margin-left: 12px;
 }
 
 @media (max-width: 640px) {

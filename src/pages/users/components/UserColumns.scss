@@ -1,0 +1,94 @@
+.table-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    color: #545f7d;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #39cdcc;
+    }
+  }
+}
+
+.table-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: 0;
+    color: #545f7d;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background: #fbfbfb;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    cursor: default;
+  }
+
+  &__popover {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 110;
+    min-width: 180px;
+    margin-top: 4px;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 24px;
+    border: 0;
+    background: transparent;
+    color: #545f7d;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #fbfbfb;
+      color: #213f7d;
+    }
+
+    /* Target SVGs to ensure they match text color and are sized appropriately */
+    svg {
+      width: 16px;
+      height: 16px;
+      color: currentcolor;
+    }
+  }
+}
