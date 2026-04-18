@@ -15,6 +15,8 @@ export type IsoDateTime = `${number}-${number}-${number}T${string}Z`
 export type User = {
   dateJoined: IsoDateTime
   email: EmailAddress
+  hasLoan: boolean
+  hasSavings: boolean
   id: UserId
   organization: string
   phoneNumber: NigerianPhoneNumber

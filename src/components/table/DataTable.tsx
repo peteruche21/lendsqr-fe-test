@@ -1,13 +1,17 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import type { ColumnDef } from '@tanstack/react-table'
 
-export type DataTableProps<TData, TValue = unknown> = {
+export type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   onRowClick?: (row: TData) => void
 }
 
-export function DataTable<TData>({ columns, data, onRowClick }: DataTableProps<TData>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  onRowClick,
+}: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     columns,
     data,

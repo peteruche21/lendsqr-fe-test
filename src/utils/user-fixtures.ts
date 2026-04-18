@@ -14,6 +14,8 @@ export function createMockUser(index: number): User {
   return {
     dateJoined: createDateJoined(index),
     email: createEmail(username),
+    hasLoan: index % 3 === 0,
+    hasSavings: index % 2 === 0,
     id: createUserId(index),
     organization: USER_ORGANIZATIONS[index % USER_ORGANIZATIONS.length],
     phoneNumber: createPhoneNumber(index),

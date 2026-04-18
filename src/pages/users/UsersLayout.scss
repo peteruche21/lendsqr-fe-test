@@ -53,9 +53,10 @@
 }
 
 .users-layout .page {
+  gap: 40px;
   align-items: flex-start;
   min-height: 100%; /* Fallback for older browsers */
-  padding: 40px 60px;
+  padding: 60px 60px 40px;
 }
 
 @media (max-width: 1024px) {
