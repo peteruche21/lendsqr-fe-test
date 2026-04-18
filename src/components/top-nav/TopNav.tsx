@@ -1,5 +1,6 @@
 import type { HTMLAttributes, MouseEventHandler } from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 import { ArrowHeadDownIcon, BellIcon } from '@/assets/icons'
 import { Avatar } from '@/components/avatar'
@@ -33,8 +34,10 @@ export function TopNav({
   return (
     <header className={classes} {...navProps}>
       <div className="top-nav__brand">
-        <Logo className="top-nav__logo" />
-        <Logo className="top-nav__logo-icon" variant="icon" />
+        <Link aria-label="Go to Home" className="top-nav__logo-link" to="/users">
+          <Logo className="top-nav__logo" />
+          <Logo className="top-nav__logo-icon" variant="icon" />
+        </Link>
         <button
           aria-label="Open sidebar"
           className="top-nav__menu-button"

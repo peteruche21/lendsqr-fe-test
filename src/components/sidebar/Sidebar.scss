@@ -1,0 +1,126 @@
+.sidebar {
+  width: var(--top-nav-sidebar-width, 283px);
+  flex: 0 0 var(--top-nav-sidebar-width, 283px);
+  position: sticky;
+  top: 118px; /* TopNav is exactly 118px tall on desktop */
+  height: calc(100vh - 118px);
+  overflow-y: auto;
+  background: #ffffff;
+  box-shadow: 0 5px 20px 0 #0000000a;
+  
+  /* Hide scrollbars but allow scrolling */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar__content {
+  padding-top: 30px;
+  padding-bottom: 35px;
+}
+
+.sidebar__switch {
+  position: relative;
+}
+
+.sidebar__switch-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 24px;
+  right: 24px;
+  z-index: 100;
+  margin-top: 8px;
+}
+
+.sidebar__switch-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  cursor: default;
+}
+
+.sidebar__switch-card {
+  padding: 16px;
+  color: #545f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sidebar__dashboard {
+  margin-top: 35px;
+}
+
+.sidebar__groups {
+  display: grid;
+  gap: 30px;
+  margin-top: 35px;
+}
+
+/* Override nav-item-group heading margin for sidebar */
+.sidebar .nav-item-group__heading {
+  margin-bottom: 10px;
+}
+
+.sidebar__footer {
+  margin-top: 62px;
+}
+
+.sidebar__footer-line {
+  height: 1px;
+  border-top: 1px solid #213f7d;
+  opacity: 0.1;
+}
+
+.sidebar__logout {
+  margin-top: 20px;
+}
+
+.sidebar__version {
+  margin: 35px 0 0;
+  padding-left: 30px;
+  color: #213f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: block;
+    background: #00000033;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .sidebar-backdrop--open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

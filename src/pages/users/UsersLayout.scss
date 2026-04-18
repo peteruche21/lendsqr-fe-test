@@ -1,22 +1,79 @@
 .users-layout {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: #fbfbfb;
 }
 
-.users-layout .page {
+.users-layout > .top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.users-layout__main {
+  display: flex;
   align-items: flex-start;
+  flex: 1;
+  min-height: 0;
+}
+
+.users-layout__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.users-layout__unimplemented {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: calc(100vh - 100px);
   padding: 40px 60px;
 }
 
+.users-layout__unimplemented-card {
+  padding: 40px;
+  text-align: center;
+}
+
+.users-layout__unimplemented-card h2 {
+  margin: 0 0 16px;
+  color: #213f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.users-layout__unimplemented-card p {
+  margin: 0;
+  color: #545f7d;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 16px;
+}
+
+.users-layout .page {
+  align-items: flex-start;
+  min-height: 100%; /* Fallback for older browsers */
+  padding: 40px 60px;
+}
+
+@media (max-width: 1024px) {
+  .users-layout__content {
+    width: 100%;
+  }
+}
+
 @media (max-width: 760px) {
-  .users-layout .page {
+  .users-layout .page,
+  .users-layout__unimplemented {
     padding: 32px 24px;
   }
 }
 
 @media (max-width: 440px) {
-  .users-layout .page {
+  .users-layout .page,
+  .users-layout__unimplemented {
     padding: 24px 16px;
   }
 }

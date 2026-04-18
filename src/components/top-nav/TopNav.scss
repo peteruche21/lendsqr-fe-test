@@ -36,6 +36,11 @@
   cursor: pointer;
 }
 
+.top-nav__logo-link {
+  display: inline-flex;
+  border-radius: 4px;
+}
+
 .top-nav__logo {
   display: block;
   width: 144px;
@@ -54,6 +59,7 @@
   justify-content: space-between;
   min-width: 0;
   gap: 60px;
+  padding-left: 60px;
   padding-right: 60px;
 }
 
@@ -154,6 +160,7 @@
 }
 
 .top-nav__menu-button:focus-visible,
+.top-nav__logo-link:focus-visible,
 .top-nav__bell:focus-visible,
 .top-nav__profile:focus-visible,
 .top-nav__docs-link:focus-visible {
@@ -178,12 +185,13 @@
     order: 1;
   }
 
-  .top-nav__logo {
+  .top-nav__logo-link {
     order: 0;
   }
 
   .top-nav__content {
     gap: 24px;
+    padding-left: 0;
     padding-right: 0;
   }
 
