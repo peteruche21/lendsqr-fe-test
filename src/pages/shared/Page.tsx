@@ -1,17 +1,22 @@
 import type { ReactNode } from 'react'
 import { Logo } from '@/components'
+import './Page.scss'
 
 type PageProps = {
   children?: ReactNode
-  copy?: string
+  header?: ReactNode
   showLogo?: boolean
 }
 
-export function Page({ children, copy, showLogo = true }: PageProps) {
+export function Page({ children, header, showLogo = true }: PageProps) {
   return (
     <main className="page">
       {showLogo ? <Logo className="page__logo" /> : null}
-      {copy ? <h1 className="page__title">{copy}</h1> : null}
+      {header ? (
+        <div className="page__header-container">
+          {header}
+        </div>
+      ) : null}
       {children}
     </main>
   )

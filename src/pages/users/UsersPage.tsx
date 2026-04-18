@@ -4,7 +4,7 @@ import { Card, Pagination } from "@/components";
 import { PageSizeDropdown } from "@/components/pagination";
 import { DataTable } from "@/components/table";
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS, USER_RECORD_COUNT } from "@/constants";
-import { Page } from "@/pages/shared";
+import { Page, PageHeader } from "@/pages/shared";
 import { UserStatus, type User, type UserFilterField, type UserFilters } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
@@ -158,7 +158,7 @@ export function UsersPage() {
   };
 
   return (
-    <Page copy="Users" showLogo={false}>
+    <Page header={<PageHeader title="Users" />} showLogo={false}>
       <section className="users">
         <div className="users__stats" aria-label="User statistics">
           {stats.map((stat) => (
