@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useInfiniteQuery, type InfiniteData } from '@tanstack/react-query'
 import { fetchUsers } from '@/api'
-import { Badge } from '@/components'
+import { Badge, SearchInput } from '@/components'
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS } from '@/constants'
 import type { PaginatedResponse, User } from '@/types'
 import { formatUserDate } from '@/utils'
@@ -56,6 +56,10 @@ export function UsersPage() {
   return (
     <Page copy="this is a users page.">
       <section className="users">
+        <div className="users__search">
+          <SearchInput />
+        </div>
+
         <header className="users__summary">
           <span>{users.length} loaded</span>
           <span>{total} total</span>
