@@ -1,0 +1,122 @@
+.login-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+  font-family: 'Avenir Next', sans-serif;
+  background: #fbfbfb;
+}
+
+.login-layout__logo {
+  position: absolute;
+  top: 48px;
+  left: 24px;
+  display: block;
+  width: 174px;
+  height: auto;
+}
+
+.login-layout__media,
+.login-layout__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 120px 24px 48px;
+}
+
+.login-layout__media {
+  background: #fbfbfb;
+}
+
+.login-layout__panel {
+  background: #ffffff;
+}
+
+.login-layout__vector {
+  display: block;
+  width: min(100%, 600px);
+  max-width: 600px;
+  max-height: 338px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-page {
+  width: min(100%, 447px);
+}
+
+.login-page__intro {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+.login-page__title {
+  margin: 0;
+  color: #213F7D;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.login-page__subtitle {
+  margin: 0;
+  color: #545F7D;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.login-page__form {
+  display: grid;
+  gap: 30px;
+}
+
+.login-page__fields {
+  display: grid;
+  gap: 24px;
+}
+
+.login-page__forgot-password {
+  justify-self: start;
+  width: fit-content;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+.login-page__submit {
+  height: 48px;
+  min-height: 48px;
+}
+
+@media (max-width: 960px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .login-layout__media {
+    display: none;
+  }
+
+  .login-layout__panel {
+    min-height: 100vh;
+    background: #ffffff;
+  }
+}
+
+@media (min-width: 961px) {
+  .login-layout__media,
+  .login-layout__panel {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .login-layout__logo {
+    top: 64px;
+    left: 40px;
+  }
+}

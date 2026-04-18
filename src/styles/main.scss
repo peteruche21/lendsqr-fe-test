@@ -1,3 +1,6 @@
 @use 'styles/base';
+@use 'components/button/Button';
+@use 'components/input/Input';
+@use 'pages/login/LoginPage';
 @use 'pages/shared/Page';
 @use 'pages/users/UsersPage';

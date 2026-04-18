@@ -1,15 +1,16 @@
 import type { ReactNode } from 'react'
+import { Logo } from '@/components'
 
 type PageProps = {
   children?: ReactNode
-  copy: string
+  copy?: string
 }
 
 export function Page({ children, copy }: PageProps) {
   return (
     <main className="page">
-      <img className="page__logo" src="/logo.svg" alt="Lendsqr" />
-      <p>{copy}</p>
+      <Logo className="page__logo" />
+      {copy ? <p>{copy}</p> : null}
       {children}
     </main>
   )

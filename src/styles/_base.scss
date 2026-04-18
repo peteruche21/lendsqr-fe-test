@@ -1,7 +1,12 @@
 :root {
   font-family: system-ui, sans-serif;
   color: #213547;
-  background: #ffffff;
+  background: #fbfbfb;
+  --color-primary: #39cdcc;
+  --color-neutral: #545f7d;
+  --color-success: #39cd62;
+  --color-input-border-default: #545f7d26;
+  --color-input-border-error: #e4033b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,4 +21,5 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  background: #fbfbfb;
 }
