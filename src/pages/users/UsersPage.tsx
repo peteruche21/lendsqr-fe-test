@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useInfiniteQuery, type InfiniteData } from '@tanstack/react-query'
 import { fetchUsers } from '@/api'
+import { Badge } from '@/components'
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS } from '@/constants'
 import type { PaginatedResponse, User } from '@/types'
 import { formatUserDate } from '@/utils'
@@ -100,7 +101,7 @@ function UserRow({ user }: { user: User }) {
       <td>{user.phoneNumber}</td>
       <td>{formatUserDate(user.dateJoined)}</td>
       <td>
-        <span className={`status status--${user.status}`}>{user.status}</span>
+        <Badge variant={user.status} />
       </td>
     </tr>
   )
