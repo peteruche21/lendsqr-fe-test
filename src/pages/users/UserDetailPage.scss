@@ -1,63 +1,63 @@
 .user-detail-page {
-  width: 100%;
+    width: 100%;
 
-  &__back {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border: 0;
-    background: transparent;
-    color: #545f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
+    &__back {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 0;
+        background: transparent;
+        color: #545f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
 
-    &:hover {
-      opacity: 0.7;
+        &:hover {
+            opacity: 0.7;
+        }
+
+        svg {
+            width: 30px;
+            height: auto;
+        }
     }
 
-    svg {
-      width: 30px;
-      height: auto;
+    &__tab-content {
+        margin-top: 30px;
     }
-  }
 
-  &__tab-content {
-    margin-top: 30px;
-  }
-
-  &__placeholder {
-    background: #fff;
-    padding: 40px;
-    border: 1px solid rgba(33, 63, 125, 0.06);
-    box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
-    border-radius: 4px;
-    color: #545f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
+    &__placeholder {
+        background: #fff;
+        padding: 40px;
+        border: 1px solid rgba(33, 63, 125, 0.06);
+        box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
+        border-radius: 4px;
+        color: #545f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
 }
 
 .button--blacklist {
-  color: #e4033b !important;
-  border-color: #e4033b !important;
+    color: #e4033b !important;
+    border-color: #e4033b !important;
 }
 
 .button--activate {
-  color: #39cdcc !important;
-  border-color: #39cdcc !important;
+    color: #39cdcc !important;
+    border-color: #39cdcc !important;
 }
 
 .user-detail-loading,
 .user-detail-error {
-  padding: 40px;
-  text-align: center;
-  color: #545f7d;
+    padding: 40px;
+    text-align: center;
+    color: #545f7d;
 }

@@ -1,3 +1,3 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'icon' | 'outline' | 'ghost'
+export type ButtonVariant = 'primary' | 'secondary' | 'icon' | 'outline' | 'ghost';
 
-export type ButtonTone = 'neutral' | 'success' | 'error'
+export type ButtonTone = 'neutral' | 'success' | 'error';

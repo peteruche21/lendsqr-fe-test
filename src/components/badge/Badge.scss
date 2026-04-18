@@ -1,32 +1,32 @@
 .badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  height: 30px;
-  padding: 0 12px;
-  border-radius: 100px;
-  font-size: 14px;
-  line-height: 1;
-  text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 100px;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: capitalize;
 }
 
 .badge--inactive {
-  color: #545f7d;
-  background: #545f7d0f;
+    color: #545f7d;
+    background: #545f7d0f;
 }
 
 .badge--pending {
-  color: #e9b200;
-  background: #e9b2001a;
+    color: #e9b200;
+    background: #e9b2001a;
 }
 
 .badge--active {
-  color: #39cd62;
-  background: #39cd620f;
+    color: #39cd62;
+    background: #39cd620f;
 }
 
 .badge--blacklisted {
-  color: #e4033b;
-  background: #e4033b1a;
+    color: #e4033b;
+    background: #e4033b1a;
 }

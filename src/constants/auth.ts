@@ -1,8 +1,8 @@
-import type { LoginFormValues } from '@/types'
+import type { LoginFormValues } from '@/types';
 
 export const DEFAULT_LOGIN_FORM_VALUES: LoginFormValues = {
-  email: '',
-  password: '',
-}
+    email: '',
+    password: '',
+};
 
-export const LOGIN_SUBMIT_DELAY_MS = 800
+export const LOGIN_SUBMIT_DELAY_MS = 800;

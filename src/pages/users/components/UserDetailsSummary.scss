@@ -1,140 +1,140 @@
 .user-details-summary {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 30px 0; // 30px top, 30px L/R, 0 bottom (tabs handle bottom)
-  border-color: #213f7d0f !important;
-  background: #ffffff;
-  margin-bottom: 30px;
-  height: auto; // Allowing it to fit the 100px content + 50px gap + tabs
-
-  &__top-row {
-    display: flex;
-    align-items: center;
-    height: 100px;
-    margin-bottom: 50px;
-    width: auto;
-
-    @media (max-width: 992px) {
-      height: auto;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-  }
-
-  &__profile {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-right: 30px;
-    height: 100%;
-    white-space: nowrap;
-  }
-
-  &__avatar-bg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 100px;
-    background: #213f7d29;
-    border-radius: 50%;
-    color: #213f7d;
-  }
-
-  &__avatar-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  &__name-id {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
+    padding: 30px 30px 0; // 30px top, 30px L/R, 0 bottom (tabs handle bottom)
+    border-color: #213f7d0f !important;
+    background: #ffffff;
+    margin-bottom: 30px;
+    height: auto; // Allowing it to fit the 100px content + 50px gap + tabs
 
-  &__name {
-    margin: 0;
-    color: #213f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-    text-transform: capitalize;
-  }
+    &__top-row {
+        display: flex;
+        align-items: center;
+        height: 100px;
+        margin-bottom: 50px;
+        width: auto;
 
-  &__id {
-    color: #545f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  &__tier {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-    width: 133px;
-    height: 80px;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-left: 1px solid rgba(84, 95, 125, 0.2);
-    border-right: 1px solid rgba(84, 95, 125, 0.2);
-    white-space: nowrap;
-
-    @media (max-width: 992px) {
-      border: 0;
-      padding: 0;
-      height: auto;
-      width: 100%;
+        @media (max-width: 992px) {
+            height: auto;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
     }
-  }
 
-  &__label {
-    color: #545f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  &__stars {
-    display: flex;
-    gap: 4px;
-  }
-
-  &__star {
-    width: 14px;
-    height: 14px;
-  }
-
-  &__bank {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-    padding-left: 30px;
-    height: 100%;
-    white-space: nowrap;
-
-    @media (max-width: 992px) {
-      padding-left: 0;
-      height: auto;
+    &__profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-right: 30px;
+        height: 100%;
+        white-space: nowrap;
     }
-  }
 
-  &__balance {
-    margin: 0;
-    color: #213f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-  }
+    &__avatar-bg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        background: #213f7d29;
+        border-radius: 50%;
+        color: #213f7d;
+    }
 
-  &__bank-details {
-    color: #213f7d;
-    font-family: 'Work Sans', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-  }
+    &__avatar-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    &__name-id {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__name {
+        margin: 0;
+        color: #213f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    &__id {
+        color: #545f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    &__tier {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        width: 133px;
+        height: 80px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-left: 1px solid rgba(84, 95, 125, 0.2);
+        border-right: 1px solid rgba(84, 95, 125, 0.2);
+        white-space: nowrap;
+
+        @media (max-width: 992px) {
+            border: 0;
+            padding: 0;
+            height: auto;
+            width: 100%;
+        }
+    }
+
+    &__label {
+        color: #545f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__stars {
+        display: flex;
+        gap: 4px;
+    }
+
+    &__star {
+        width: 14px;
+        height: 14px;
+    }
+
+    &__bank {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding-left: 30px;
+        height: 100%;
+        white-space: nowrap;
+
+        @media (max-width: 992px) {
+            padding-left: 0;
+            height: auto;
+        }
+    }
+
+    &__balance {
+        margin: 0;
+        color: #213f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    &__bank-details {
+        color: #213f7d;
+        font-family: 'Work Sans', system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+    }
 }

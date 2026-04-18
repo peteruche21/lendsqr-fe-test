@@ -1,18 +1,18 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: center;
-  min-height: 100vh;
-  padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
 }
 
 .page__logo {
-  display: block;
-  width: 174px;
-  height: auto;
+    display: block;
+    width: 174px;
+    height: auto;
 }
 
 .page__header-container {
-  width: 100%;
+    width: 100%;
 }

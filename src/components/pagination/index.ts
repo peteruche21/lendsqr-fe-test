@@ -1,2 +1,2 @@
-export * from './PageSizeDropdown'
-export * from './Pagination'
+export * from './PageSizeDropdown';
+export * from './Pagination';

@@ -1,86 +1,86 @@
 .input-field {
-  display: grid;
-  gap: 8px;
-  width: 100%;
+    display: grid;
+    gap: 8px;
+    width: 100%;
 }
 
 .input-field__label {
-  color: #545f7d;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 180ms ease;
+    color: #545f7d;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 180ms ease;
 }
 
 .input-field__control {
-  display: flex;
-  align-items: center;
-  min-height: 50px;
-  padding: 0 16px;
-  border: 2px solid var(--color-input-border-default);
-  border-radius: 5px;
-  background: #ffffff;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 0 16px;
+    border: 2px solid var(--color-input-border-default);
+    border-radius: 5px;
+    background: #ffffff;
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background-color 160ms ease;
 }
 
 .input-field__control:hover {
-  border-color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .input-field:focus-within .input-field__control {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgb(57 205 204 / 12%);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgb(57 205 204 / 12%);
 }
 
 .input-field--error .input-field__control,
 .input-field--error .input-field__control:hover,
 .input-field--error:focus-within .input-field__control {
-  border-color: var(--color-input-border-error);
-  box-shadow: none;
+    border-color: var(--color-input-border-error);
+    box-shadow: none;
 }
 
 .input-field__input {
-  flex: 1;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  color: #545f7d;
-  font: inherit;
-  background: transparent;
-  outline: none;
-  transition: color 160ms ease;
+    flex: 1;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    color: #545f7d;
+    font: inherit;
+    background: transparent;
+    outline: none;
+    transition: color 160ms ease;
 }
 
 .input-field__input::placeholder {
-  color: #545f7d;
-  opacity: 0.7;
-  transition: opacity 160ms ease;
+    color: #545f7d;
+    opacity: 0.7;
+    transition: opacity 160ms ease;
 }
 
 .input-field__toggle {
-  padding: 0;
-  border: 0;
-  color: var(--color-primary);
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: transparent;
-  cursor: pointer;
-  transition:
-    color 160ms ease,
-    opacity 160ms ease;
+    padding: 0;
+    border: 0;
+    color: var(--color-primary);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        color 160ms ease,
+        opacity 160ms ease;
 }
 
 .input-field__toggle:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .input-field__message {
-  color: var(--color-input-border-error);
-  font-size: 12px;
-  transition: color 160ms ease;
+    color: var(--color-input-border-error);
+    font-size: 12px;
+    transition: color 160ms ease;
 }

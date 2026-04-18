@@ -1,23 +1,21 @@
-import type { HTMLAttributes, ReactNode } from 'react'
-import type { UserStatus } from '@/types'
+import type { HTMLAttributes, ReactNode } from 'react';
+import type { UserStatus } from '@/types';
 
-type BadgeVariant = UserStatus
+type BadgeVariant = UserStatus;
 
 type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
-  children?: ReactNode
-  variant: BadgeVariant
-}
+    children?: ReactNode;
+    variant: BadgeVariant;
+};
 
 export function Badge({ children, className, variant, ...badgeProps }: BadgeProps) {
-  const classes = ['badge', `badge--${variant}`, className ?? '']
-    .filter(Boolean)
-    .join(' ')
+    const classes = ['badge', `badge--${variant}`, className ?? ''].filter(Boolean).join(' ');
 
-  return (
-    <span className={classes} {...badgeProps}>
-      {children ?? variant}
-    </span>
-  )
+    return (
+        <span className={classes} {...badgeProps}>
+            {children ?? variant}
+        </span>
+    );
 }
 
-export type { BadgeProps, BadgeVariant }
+export type { BadgeProps, BadgeVariant };
