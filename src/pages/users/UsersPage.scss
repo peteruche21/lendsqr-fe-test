@@ -1,5 +1,5 @@
 .users {
-  width: min(100%, 1180px);
+  width: 100%;
 }
 
 .users__search {
@@ -16,9 +16,8 @@
 }
 
 .users__table-wrap {
+  padding: 30px 30px 32px 30px;
   overflow-x: auto;
-  border: 1px solid #e5e8f0;
-  border-radius: 8px;
 }
 
 .users__table {

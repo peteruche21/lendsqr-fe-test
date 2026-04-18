@@ -1,27 +1,27 @@
 .data-table-wrap {
   width: 100%;
   overflow-x: auto;
-  background: #ffffff;
-  border: 1px solid rgba(33, 63, 125, 0.06);
-  border-radius: 4px;
-  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
 .data-table {
   width: 100%;
-  min-width: 920px;
   border-collapse: collapse;
   text-align: left;
 }
 
 .data-table th,
 .data-table td {
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+  padding-right: 35px;
   white-space: nowrap;
 }
 
+.data-table th:last-child,
+.data-table td:last-child {
+  padding-right: 0;
+}
+
 .data-table th {
+  padding-bottom: 35px;
   color: #545f7d;
   font-family: 'Work Sans', system-ui, sans-serif;
   font-size: 12px;
@@ -30,6 +30,9 @@
 }
 
 .data-table td {
+  padding-top: 21px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #213f7d1a;
   color: #545f7d;
   font-family: 'Work Sans', system-ui, sans-serif;
   font-size: 14px;

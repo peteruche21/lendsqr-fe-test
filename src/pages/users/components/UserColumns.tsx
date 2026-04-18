@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createColumnHelper } from '@tanstack/react-table'
-import { Eye, ListFilter, MoreVertical } from 'lucide-react'
-import { UserCheckIcon, UserXIcon } from '@/assets/icons'
+import { ListFilter, MoreVertical } from 'lucide-react'
+import { AcUserBlockIcon, AcUserCheckIcon, AcUserEyeIcon } from '@/assets/icons'
 import { Badge, Card } from '@/components'
 import type { User } from '@/types'
 import { formatUserDate } from '@/utils'
@@ -14,7 +14,8 @@ function ColumnHeader({ title }: { title: string }) {
     <div className="table-header">
       <span>{title}</span>
       <button className="table-header__filter" type="button" aria-label={`Filter by ${title}`}>
-        <ListFilter size={14} />
+        {/* User wanted 16x10.5, we will force dimensions in CSS or directly on SVG, let's just render ListFilter */}
+        <ListFilter />
       </button>
     </div>
   )
@@ -29,25 +30,28 @@ function ActionsCell({ user }: { user: User }) {
         aria-label="More actions"
         className="table-actions__trigger"
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={(e) => {
+          e.stopPropagation()
+          setOpen(true)
+        }}
       >
         <MoreVertical size={20} />
       </button>
       {open && (
         <>
-          <div aria-hidden="true" className="table-actions__backdrop" onClick={() => setOpen(false)} />
-          <div className="table-actions__popover">
+          <div aria-hidden="true" className="table-actions__backdrop" onClick={(e) => { e.stopPropagation(); setOpen(false); }} />
+          <div className="table-actions__popover" onClick={(e) => e.stopPropagation()}>
             <Card as="div" className="table-actions__card">
-              <button className="table-actions__item" type="button">
-                <Eye size={16} />
+              <button className="table-actions__item" type="button" onClick={() => setOpen(false)}>
+                <AcUserEyeIcon />
                 <span>View Details</span>
               </button>
-              <button className="table-actions__item" type="button">
-                <UserXIcon />
+              <button className="table-actions__item" type="button" onClick={() => setOpen(false)}>
+                <AcUserBlockIcon />
                 <span>Blacklist User</span>
               </button>
-              <button className="table-actions__item" type="button">
-                <UserCheckIcon />
+              <button className="table-actions__item" type="button" onClick={() => setOpen(false)}>
+                <AcUserCheckIcon />
                 <span>Activate User</span>
               </button>
             </Card>

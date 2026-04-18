@@ -1,7 +1,7 @@
 import { UserStatus } from '@/types'
 
 export const USER_RECORD_COUNT = 520
-export const DEFAULT_USER_PAGE_SIZE = 50
+export const DEFAULT_USER_PAGE_SIZE = 20
 
 export const USER_STATUSES = [
   UserStatus.Active,

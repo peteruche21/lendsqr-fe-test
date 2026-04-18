@@ -11,7 +11,7 @@ export function Page({ children, copy, showLogo = true }: PageProps) {
   return (
     <main className="page">
       {showLogo ? <Logo className="page__logo" /> : null}
-      {copy ? <p>{copy}</p> : null}
+      {copy ? <h1 className="page__title">{copy}</h1> : null}
       {children}
     </main>
   )

@@ -13,7 +13,7 @@ export function UsersLayout() {
     <div className="users-layout">
       <TopNav
         avatarAlt="Adedeji"
-        avatarSrc="/avatar.svg"
+        avatarSrc="/adedeji.png"
         onMenuClick={() => setSidebarOpen(true)}
       />
       <div className="users-layout__main">

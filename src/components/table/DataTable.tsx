@@ -4,9 +4,10 @@ import type { ColumnDef } from '@tanstack/react-table'
 export type DataTableProps<TData, TValue = unknown> = {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  onRowClick?: (row: TData) => void
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData>({ columns, data, onRowClick }: DataTableProps<TData>) {
   const table = useReactTable({
     columns,
     data,
@@ -38,7 +39,11 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
             </tr>
           ) : (
             table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+              <tr 
+                key={row.id}
+                style={{ cursor: onRowClick ? 'pointer' : 'default' }}
+                onClick={() => onRowClick?.(row.original)}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

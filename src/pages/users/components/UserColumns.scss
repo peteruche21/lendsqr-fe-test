@@ -17,6 +17,12 @@
     &:hover {
       color: #39cdcc;
     }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      color: #545f7d;
+    }
   }
 }
 
@@ -40,6 +46,12 @@
     &:hover {
       background: #fbfbfb;
     }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #545f7d;
+    }
   }
 
   &__backdrop {
@@ -61,7 +73,7 @@
   &__card {
     display: flex;
     flex-direction: column;
-    padding: 12px 0;
+    padding: 20px;
   }
 
   &__item {
@@ -69,7 +81,7 @@
     align-items: center;
     gap: 12px;
     width: 100%;
-    padding: 8px 24px;
+    padding: 8px 0;
     border: 0;
     background: transparent;
     color: #545f7d;

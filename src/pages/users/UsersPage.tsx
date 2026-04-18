@@ -1,16 +1,18 @@
-import { useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { fetchUsers } from "@/api";
-import { Pagination, SearchInput } from "@/components";
+import { Card, Pagination } from "@/components";
 import { PageSizeDropdown } from "@/components/pagination";
 import { DataTable } from "@/components/table";
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS } from "@/constants";
 import { Page } from "@/pages/shared";
+import { useQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { userColumns } from "./components/UserColumns";
 
 export function UsersPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_USER_PAGE_SIZE);
+  const navigate = useNavigate();
 
   const cursor = (currentPage - 1) * pageSize;
   const query = useQuery({
@@ -49,9 +51,13 @@ export function UsersPage() {
   return (
     <Page copy="Users" showLogo={false}>
       <section className="users">
-        <div className="users__table-wrap">
-          <DataTable columns={userColumns} data={users} />
-        </div>
+        <Card as="div" className="users__table-wrap">
+          <DataTable 
+            columns={userColumns} 
+            data={users} 
+            onRowClick={(user) => navigate(`/users/${user.id}`)}
+          />
+        </Card>
 
         <footer className="users__footer">
           <div className="users__footer-left">
