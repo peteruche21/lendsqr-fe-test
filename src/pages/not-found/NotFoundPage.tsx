@@ -1,5 +1,11 @@
-import { Page } from '@/pages/shared'
+import { Page, PageHeader } from "@/pages/shared";
 
 export function NotFoundPage() {
-  return <Page copy="this is a 404 page." />
+  return (
+    <Page
+      header={
+        <PageHeader title="With a heavy heart, we inform you that the page you are looking for does not exist." />
+      }
+    />
+  );
 }

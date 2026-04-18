@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { ListFilter, MoreVertical } from 'lucide-react'
 import { AcUserBlockIcon, AcUserCheckIcon, AcUserEyeIcon } from '@/assets/icons'
-import { Card } from '@/components'
-import type { UserFilterField } from '@/types'
+import { Badge, Card } from '@/components'
+import { useUserStore } from '@/store/userStore'
+import { UserStatus, type User, type UserFilterField } from '@/types'
 
 type ColumnHeaderProps = {
   field: UserFilterField
@@ -41,14 +42,32 @@ export function ColumnHeader({
   )
 }
 
+type StatusCellProps = {
+  user: User
+}
+
+export function StatusCell({ user }: StatusCellProps) {
+  const getUserStatus = useUserStore((s) => s.getUserStatus)
+  const status = getUserStatus(user.id, user.status)
+  
+  return <Badge variant={status} />
+}
+
 type ActionsCellProps = {
+  user: User
   onViewDetails: () => void
 }
 
-export function ActionsCell({ onViewDetails }: ActionsCellProps) {
+export function ActionsCell({ user, onViewDetails }: ActionsCellProps) {
   const [open, setOpen] = useState(false)
+  const updateUserStatus = useUserStore((s) => s.updateUserStatus)
 
   const closePopover = () => setOpen(false)
+
+  const handleStatusUpdate = (status: UserStatus) => {
+    updateUserStatus(user.id, status)
+    closePopover()
+  }
 
   return (
     <div className="table-actions">
@@ -89,11 +108,19 @@ export function ActionsCell({ onViewDetails }: ActionsCellProps) {
                 <AcUserEyeIcon />
                 <span>View Details</span>
               </button>
-              <button className="table-actions__item" type="button" onClick={closePopover}>
+              <button 
+                className="table-actions__item" 
+                type="button" 
+                onClick={() => handleStatusUpdate(UserStatus.Blacklisted)}
+              >
                 <AcUserBlockIcon />
                 <span>Blacklist User</span>
               </button>
-              <button className="table-actions__item" type="button" onClick={closePopover}>
+              <button 
+                className="table-actions__item" 
+                type="button" 
+                onClick={() => handleStatusUpdate(UserStatus.Active)}
+              >
                 <AcUserCheckIcon />
                 <span>Activate User</span>
               </button>

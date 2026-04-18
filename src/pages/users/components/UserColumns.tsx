@@ -1,8 +1,7 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Badge } from '@/components'
 import type { User, UserFilterField } from '@/types'
 import { formatUserDate } from '@/utils'
-import { ActionsCell, ColumnHeader } from './UserTableCells'
+import { ActionsCell, ColumnHeader, StatusCell } from './UserTableCells'
 
 type CreateUserColumnsOptions = {
   activeFilters: ReadonlySet<UserFilterField>
@@ -56,13 +55,16 @@ export function createUserColumns({
     {
       accessorKey: 'status',
       header: () => renderHeader('Status', 'status'),
-      cell: (info) => <Badge variant={info.row.original.status} />,
+      cell: (info) => <StatusCell user={info.row.original} />,
     },
     {
       id: 'actions',
       header: '',
       cell: (info) => (
-        <ActionsCell onViewDetails={() => onViewDetails(info.row.original)} />
+        <ActionsCell 
+          user={info.row.original}
+          onViewDetails={() => onViewDetails(info.row.original)} 
+        />
       ),
     },
   ]
