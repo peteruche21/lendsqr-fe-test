@@ -7,3 +7,4 @@ export * from "./logo";
 export * from "./nav-item";
 export * from "./pagination";
 export * from "./search-input";
+export * from "./top-nav";

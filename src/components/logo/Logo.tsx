@@ -1,11 +1,25 @@
-import type { ImgHTMLAttributes } from "react";
+import type { ImgHTMLAttributes } from 'react'
 
-type LogoProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt">;
+type LogoVariant = 'full' | 'icon'
 
-export function Logo({ className, ...imageProps }: LogoProps) {
-  return (
-    <img alt="Lendsqr" className={className} src="/logo.svg" {...imageProps} />
-  );
+type LogoProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
+  variant?: LogoVariant
 }
 
-export type { LogoProps };
+const logoSources: Record<LogoVariant, string> = {
+  full: '/logo.svg',
+  icon: '/logo-icon.svg',
+}
+
+export function Logo({ className, variant = 'full', ...imageProps }: LogoProps) {
+  return (
+    <img
+      alt="Lendsqr"
+      className={className}
+      src={logoSources[variant]}
+      {...imageProps}
+    />
+  )
+}
+
+export type { LogoProps }

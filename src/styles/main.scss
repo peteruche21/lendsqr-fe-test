@@ -8,6 +8,8 @@
 @use 'components/nav-item/NavItem';
 @use 'components/pagination/Pagination';
 @use 'components/search-input/SearchInput';
+@use 'components/top-nav/TopNav';
 @use 'pages/login/LoginPage';
 @use 'pages/shared/Page';
+@use 'pages/users/UsersLayout';
 @use 'pages/users/UsersPage';

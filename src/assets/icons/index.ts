@@ -19,6 +19,7 @@ export * from "./piggybank";
 export * from "./sack";
 export * from "./scroll";
 export * from "./slidersHorizontal";
+export * from "./arrowHeadDown";
 export * from "./tire";
 export * from "./userCheck";
 export * from "./userGear";

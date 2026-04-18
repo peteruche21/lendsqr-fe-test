@@ -39,7 +39,7 @@ export function UsersPage() {
   }
 
   return (
-    <Page copy="this is a users page.">
+    <Page copy="this is a users page." showLogo={false}>
       <section className="users">
         <div className="users__search">
           <SearchInput />

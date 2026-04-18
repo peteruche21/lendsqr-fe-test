@@ -1,0 +1,22 @@
+.users-layout {
+  min-height: 100vh;
+  background: #fbfbfb;
+}
+
+.users-layout .page {
+  align-items: flex-start;
+  min-height: calc(100vh - 100px);
+  padding: 40px 60px;
+}
+
+@media (max-width: 760px) {
+  .users-layout .page {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 440px) {
+  .users-layout .page {
+    padding: 24px 16px;
+  }
+}

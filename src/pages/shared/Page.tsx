@@ -4,12 +4,13 @@ import { Logo } from '@/components'
 type PageProps = {
   children?: ReactNode
   copy?: string
+  showLogo?: boolean
 }
 
-export function Page({ children, copy }: PageProps) {
+export function Page({ children, copy, showLogo = true }: PageProps) {
   return (
     <main className="page">
-      <Logo className="page__logo" />
+      {showLogo ? <Logo className="page__logo" /> : null}
       {copy ? <p>{copy}</p> : null}
       {children}
     </main>
