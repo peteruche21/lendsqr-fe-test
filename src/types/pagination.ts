@@ -1,7 +1,10 @@
+import type { UserFilters } from './user-filters'
+
 export type Cursor = number
 
 export type PaginatedRequest<TLimit extends number = number> = {
   cursor?: Cursor
+  filters?: Partial<UserFilters>
   limit: TLimit
 }
 

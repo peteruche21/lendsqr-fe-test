@@ -5,12 +5,14 @@ import { PageSizeDropdown } from "@/components/pagination";
 import { DataTable } from "@/components/table";
 import { DEFAULT_USER_PAGE_SIZE, QUERY_STALE_TIME_MS, USER_RECORD_COUNT } from "@/constants";
 import { Page } from "@/pages/shared";
-import { UserStatus, type User } from "@/types";
+import { UserStatus, type User, type UserFilterField, type UserFilters } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { createUserColumns } from "./components/UserColumns";
+import { UserTableFilter } from "./components/UserTableFilter";
 
 type UserStatCard = {
   backgroundColor: string;
@@ -19,9 +21,29 @@ type UserStatCard = {
   value: number;
 };
 
+type FilterAnchor = {
+  left: number;
+  top: number;
+};
+
+const FILTER_POPOVER_WIDTH = 270;
+const FILTER_POPOVER_VIEWPORT_MARGIN = 24;
+
+const DEFAULT_USER_FILTERS: UserFilters = {
+  dateJoined: "",
+  email: "",
+  organization: "",
+  phoneNumber: "",
+  status: "",
+  username: "",
+};
+
 export function UsersPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_USER_PAGE_SIZE);
+  const [openFilter, setOpenFilter] = useState<UserFilterField | null>(null);
+  const [filterAnchor, setFilterAnchor] = useState<FilterAnchor | null>(null);
+  const [filters, setFilters] = useState<UserFilters>(DEFAULT_USER_FILTERS);
   const navigate = useNavigate();
 
   const cursor = (currentPage - 1) * pageSize;
@@ -29,9 +51,10 @@ export function UsersPage() {
     queryFn: () =>
       fetchUsers({
         cursor,
+        filters,
         limit: pageSize,
       }),
-    queryKey: ["users", pageSize, currentPage],
+    queryKey: ["users", pageSize, currentPage, filters],
     staleTime: QUERY_STALE_TIME_MS,
   });
   const statsQuery = useQuery({
@@ -43,25 +66,58 @@ export function UsersPage() {
     staleTime: QUERY_STALE_TIME_MS,
   });
 
-  const users = query.data?.items ?? [];
-  const total = query.data?.pagination.total ?? statsQuery.data?.pagination.total ?? 0;
+  const users = useMemo(() => query.data?.items ?? [], [query.data]);
+  const tableTotal = query.data?.pagination.total ?? 0;
+  const statsTotal = statsQuery.data?.pagination.total ?? 0;
   const totalPages = useMemo(
-    () => Math.max(1, Math.ceil(total / pageSize)),
-    [total, pageSize],
+    () => Math.max(1, Math.ceil(tableTotal / pageSize)),
+    [tableTotal, pageSize],
   );
   const stats = useMemo(
     () => createUserStats({
-      total,
+      total: statsTotal,
       users: statsQuery.data?.items ?? [],
     }),
-    [statsQuery.data, total],
+    [statsQuery.data, statsTotal],
   );
+  const activeFilters = useMemo(() => {
+    const fields = Object.entries(filters)
+      .filter(([, value]) => value !== "")
+      .map(([field]) => field as UserFilterField);
+
+    return new Set(fields);
+  }, [filters]);
   const columns = useMemo(
     () =>
       createUserColumns({
+        activeFilters,
+        onOpenFilter: (field, trigger) => {
+          const rect = trigger.getBoundingClientRect();
+          const preferredLeft =
+            field === "status" ? rect.right - FILTER_POPOVER_WIDTH : rect.left;
+          const maxLeft =
+            window.innerWidth - FILTER_POPOVER_WIDTH - FILTER_POPOVER_VIEWPORT_MARGIN;
+          const viewportLeft = Math.min(
+            Math.max(preferredLeft, FILTER_POPOVER_VIEWPORT_MARGIN),
+            Math.max(maxLeft, FILTER_POPOVER_VIEWPORT_MARGIN),
+          );
+
+          if (openFilter === field) {
+            setOpenFilter(null);
+            setFilterAnchor(null);
+            return;
+          }
+
+          setOpenFilter(field);
+          setFilterAnchor({
+            left: viewportLeft + window.scrollX,
+            top: rect.bottom + window.scrollY + 16,
+          });
+        },
         onViewDetails: (user) => navigate(`/users/${user.id}`),
+        openFilter,
       }),
-    [navigate],
+    [activeFilters, navigate, openFilter],
   );
   const statusMessage = query.isError
     ? "Unable to load users."
@@ -78,6 +134,27 @@ export function UsersPage() {
   const handlePageSizeChange = (newSize: number) => {
     setPageSize(newSize);
     setCurrentPage(1);
+  };
+
+  const handleFilterChange = <Field extends UserFilterField>(
+    field: Field,
+    value: UserFilters[Field],
+  ) => {
+    setCurrentPage(1);
+    setFilters((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  };
+
+  const handleFilterReset = (field: UserFilterField) => {
+    setCurrentPage(1);
+    setFilters((current) => ({
+      ...current,
+      [field]: DEFAULT_USER_FILTERS[field],
+    }));
+    setOpenFilter(null);
+    setFilterAnchor(null);
   };
 
   return (
@@ -103,7 +180,7 @@ export function UsersPage() {
               onChange={handlePageSizeChange}
               value={pageSize}
             />
-            <span className="users__footer-text">out of {total}</span>
+            <span className="users__footer-text">out of {tableTotal}</span>
             {statusMessage && (
               <span className="users__status">{statusMessage}</span>
             )}
@@ -117,9 +194,57 @@ export function UsersPage() {
             onPrevious={() => goToPage(currentPage - 1)}
           />
         </footer>
+
+        {openFilter && filterAnchor
+          ? createPortal(
+              <>
+                <div
+                  aria-hidden="true"
+                  className="users__filter-backdrop"
+                  onClick={() => {
+                    setOpenFilter(null);
+                    setFilterAnchor(null);
+                  }}
+                />
+                <div
+                  className="users__filter-popover"
+                  style={{
+                    left: filterAnchor.left,
+                    top: filterAnchor.top,
+                  }}
+                >
+                  <UserTableFilter
+                    field={openFilter}
+                    label={getUserFilterLabel(openFilter)}
+                    onChange={handleFilterChange}
+                    onReset={handleFilterReset}
+                    value={filters[openFilter]}
+                  />
+                </div>
+              </>,
+              document.body,
+            )
+          : null}
       </section>
     </Page>
   );
+}
+
+function getUserFilterLabel(field: UserFilterField): string {
+  switch (field) {
+    case "dateJoined":
+      return "Date"
+    case "email":
+      return "Email"
+    case "organization":
+      return "Organization"
+    case "phoneNumber":
+      return "Phone Number"
+    case "status":
+      return "Status"
+    case "username":
+      return "Username"
+  }
 }
 
 function createUserStats({

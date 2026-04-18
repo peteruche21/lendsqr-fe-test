@@ -11,6 +11,14 @@ export async function fetchUsers(
     params.set('cursor', String(request.cursor))
   }
 
+  if (request.filters) {
+    for (const [field, value] of Object.entries(request.filters)) {
+      if (value) {
+        params.set(field, value)
+      }
+    }
+  }
+
   const response = await fetch(`/api/users?${params}`)
 
   if (!response.ok) {

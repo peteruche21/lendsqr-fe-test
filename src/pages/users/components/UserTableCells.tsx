@@ -2,13 +2,40 @@ import { useState } from 'react'
 import { ListFilter, MoreVertical } from 'lucide-react'
 import { AcUserBlockIcon, AcUserCheckIcon, AcUserEyeIcon } from '@/assets/icons'
 import { Card } from '@/components'
+import type { UserFilterField } from '@/types'
 
-export function ColumnHeader({ title }: { title: string }) {
+type ColumnHeaderProps = {
+  field: UserFilterField
+  hasFilter: boolean
+  onOpenFilter: (field: UserFilterField, trigger: HTMLElement) => void
+  openFilter: UserFilterField | null
+  title: string
+}
+
+export function ColumnHeader({
+  field,
+  hasFilter,
+  onOpenFilter,
+  openFilter,
+  title,
+}: ColumnHeaderProps) {
+  const isOpen = openFilter === field
+
   return (
     <div className="table-header">
       <span>{title}</span>
-      <button className="table-header__filter" type="button" aria-label={`Filter by ${title}`}>
+      <button
+        aria-expanded={isOpen}
+        className="table-header__filter"
+        type="button"
+        aria-label={`Filter by ${title}`}
+        onClick={(event) => {
+          event.stopPropagation()
+          onOpenFilter(field, event.currentTarget)
+        }}
+      >
         <ListFilter />
+        {hasFilter ? <span className="table-header__filter-dot" /> : null}
       </button>
     </div>
   )
