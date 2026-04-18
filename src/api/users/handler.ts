@@ -1,5 +1,5 @@
 import { UserStatus, type PaginatedRequest, type UserFilters } from '@/types'
-import { listMockUsers } from './mock-store'
+import { listMockUsers, findMockUserById } from './mock-store'
 
 export async function handleUsersRequest(request: Request): Promise<Response> {
   if (request.method !== 'GET') {
@@ -7,6 +7,21 @@ export async function handleUsersRequest(request: Request): Promise<Response> {
   }
 
   const url = new URL(request.url)
+  const pathSegments = url.pathname.split('/').filter(Boolean)
+  
+  // Handle /api/users/:id
+  if (pathSegments.length === 3 && pathSegments[1] === 'users') {
+    const userId = pathSegments[2]
+    const user = await findMockUserById(userId)
+    
+    if (!user) {
+      return Response.json({ error: 'User not found.' }, { status: 404 })
+    }
+    
+    return Response.json(user)
+  }
+
+  // Handle /api/users (List)
   const limit = Number(url.searchParams.get('limit'))
   const cursorParam = url.searchParams.get('cursor')
   const cursor = cursorParam === null ? undefined : Number(cursorParam)
@@ -64,7 +79,7 @@ function getUserFilters(searchParams: URLSearchParams): Partial<UserFilters> {
     status === UserStatus.Inactive ||
     status === UserStatus.Pending
   ) {
-    filters.status = status
+    filters.status = status as UserStatus
   }
 
   return filters

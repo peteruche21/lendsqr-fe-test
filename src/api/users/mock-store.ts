@@ -1,9 +1,9 @@
 import { USER_RECORD_COUNT } from '@/constants/users'
-import type { PaginatedRequest, PaginatedResponse, User } from '@/types'
+import type { PaginatedRequest, PaginatedResponse, User, UserDetails } from '@/types'
 import { filterUsers } from '@/utils/user-filters'
 import { createMockUser } from '@/utils/user-fixtures'
 
-const users = Array.from({ length: USER_RECORD_COUNT }, (_, index) => createMockUser(index))
+const users: UserDetails[] = Array.from({ length: USER_RECORD_COUNT }, (_, index) => createMockUser(index))
 
 export async function listMockUsers(
   request: PaginatedRequest,
@@ -24,4 +24,8 @@ export async function listMockUsers(
       total: filteredUsers.length,
     },
   }
+}
+
+export async function findMockUserById(id: string): Promise<UserDetails | null> {
+  return users.find(user => user.id === id) ?? null
 }

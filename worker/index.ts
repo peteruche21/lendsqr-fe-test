@@ -4,7 +4,7 @@ export default {
   fetch(request) {
     const url = new URL(request.url)
 
-    if (url.pathname === '/api/users') {
+    if (url.pathname.startsWith('/api/users')) {
       return handleUsersRequest(request)
     }
 
