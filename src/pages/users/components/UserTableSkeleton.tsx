@@ -21,7 +21,7 @@ export function UserTableSkeleton() {
                             </div>
                         ))}
                         <div className="user-table-skeleton__cell user-table-skeleton__cell--actions">
-                            <Skeleton circle height={20} width={20} />
+                            <Skeleton variant="circle" height={20} width={20} />
                         </div>
                     </div>
                 ))}
