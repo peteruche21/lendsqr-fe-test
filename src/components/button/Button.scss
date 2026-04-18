@@ -1,0 +1,130 @@
+.button {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #213f7d;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.button:hover {
+  opacity: 0.94;
+}
+
+.button:focus-visible {
+  outline: 3px solid rgb(57 205 204 / 18%);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+  transform: none;
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+.button--primary {
+  color: #ffffff;
+  background: var(--color-primary);
+}
+
+.button--primary:disabled {
+  color: #213f7d;
+  background: var(--color-input-border-default);
+}
+
+.button--secondary {
+  color: var(--color-neutral);
+  background: var(--color-input-border-default);
+}
+
+.button--ghost {
+  padding: 0;
+  border-color: transparent;
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.button--icon {
+  min-width: 48px;
+  padding: 0 14px;
+  color: var(--color-neutral);
+  background: rgb(84 95 125 / 8%);
+}
+
+.button--outline {
+  background: transparent;
+}
+
+.button--tone-neutral.button--outline {
+  border-color: var(--color-neutral);
+  color: var(--color-neutral);
+}
+
+.button--tone-success.button--outline {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.button--tone-error.button--outline {
+  border-color: var(--color-input-border-error);
+  color: var(--color-input-border-error);
+}
+
+.button__label {
+  line-height: 1;
+}
+
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.button__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgb(255 255 255 / 35%);
+  border-top-color: currentColor;
+  border-radius: 999px;
+  animation: button-spinner 650ms linear infinite;
+}
+
+.button--secondary .button__spinner,
+.button--ghost .button__spinner,
+.button--icon .button__spinner,
+.button--outline .button__spinner {
+  border-color: rgb(84 95 125 / 25%);
+  border-top-color: currentColor;
+}
+
+@keyframes button-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
