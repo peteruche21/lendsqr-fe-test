@@ -30,3 +30,5 @@ export * from "./userGear";
 export * from "./userGroup";
 export * from "./users";
 export * from "./userX";
+export * from "./starFilled";
+export * from "./starOutline";
