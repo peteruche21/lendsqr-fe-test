@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './styles/main.scss'
+import { LoginPage, NotFoundPage, UserDetailPage, UsersPage } from '@/pages'
 
 function App() {
   return (
@@ -17,31 +17,6 @@ export function AppRoutes() {
       <Route path="/users/:id" element={<UserDetailPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-  )
-}
-
-function LoginPage() {
-  return <Page copy="this is a login page." />
-}
-
-function UsersPage() {
-  return <Page copy="this is a users page." />
-}
-
-function UserDetailPage() {
-  return <Page copy="this is a user detail page." />
-}
-
-function NotFoundPage() {
-  return <Page copy="this is a 404 page." />
-}
-
-function Page({ copy }: { copy: string }) {
-  return (
-    <main className="page">
-      <img className="page__logo" src="/logo.svg" alt="Lendsqr" />
-      <p>{copy}</p>
-    </main>
   )
 }
 
